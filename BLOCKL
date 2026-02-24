@@ -10,7 +10,7 @@
 
 (DEFUN ABSVAL (X) (COND ((MINUSP X) (MINUS X)) (X)))
 
-(DEFUN ATAB (X) (OR (ASSQ X ASTOVETOP) (ERT ASTOVETOP)))
+(DEFUN ATAB (X) (OR (ASSQ X ATABLE) (ERT ATABLE)))
 
 (DEFUN CLEAR
        (LOC SIZE OBJ)
@@ -24,7 +24,7 @@
 				LOC
 				SIZE))
 		  (RETURN NIL))
-	     (SETQ W ASTOVETOP)
+	     (SETQ W ATABLE)
 	GO   (COND ((NULL W) (RETURN LOC))
 		   ((MEMQ (CAAR W) OBJ))
 		   ((AND (< (CAR LOC) (+ (CAR (SETQ X1 (CADAR W)))
@@ -173,7 +173,7 @@
 					    YL)))
 			   ((MEMQ (CAR X) XO) (THROW 'GROW-DONE NIL))
 			   ((SETQ YO (CONS (CAR X) YO))))))
-	     ASTOVETOP))))
+	     ATABLE))))
 	 (RETURN NIL)))
   GO   (COND ((= (SETQ GROW (MIN (CAAR XL) (CAAR XH) (CAAR YL) (CAAR YH)))
 		  2000)
@@ -228,7 +228,7 @@
        (X Y Z)
        (PROG (W X1 X2)
 	     (COND ((MINUSP Z) (RETURN ':STOVETOP)))
-	     (SETQ W ASTOVETOP)
+	     (SETQ W ATABLE)
 	GO   (COND ((NULL W) (RETURN NIL))
 		   ((AND (< (- (CAR (SETQ X1 (CADAR W))) 1)
 				X
@@ -308,7 +308,7 @@
 					    (LIST (LIST 'X
 							'THUNASSIGNED)
 						  (LIST 'Y (CAR X))))))))))
-  ASTOVETOP)
+  ATABLE)
 )
 
 
